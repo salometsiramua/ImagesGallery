@@ -9,11 +9,13 @@ import UIKit
 
 extension UIViewController {
     func showAlert(with error: Error) {
-        stopIndicatingActivity()
-        let message = error.localizedDescription
-        let alert = UIAlertController(title: "Error occured", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.stopIndicatingActivity()
+            let message = error.localizedDescription
+            let alert = UIAlertController(title: "Error occured", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Acitivity Indicator

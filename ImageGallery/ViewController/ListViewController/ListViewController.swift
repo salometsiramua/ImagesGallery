@@ -9,6 +9,7 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    private let refreshControl = UIRefreshControl()
     
     lazy var viewModel: ListViewModel = ListViewModelService()
     
@@ -19,6 +20,12 @@ class ListViewController: UIViewController {
         setupCollectionView()
         viewModel.listUpdatedListener = self
         viewModel.fetchList()
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        //viewModel.fetchList()
     }
     
     private func setupCollectionView() {
@@ -28,6 +35,8 @@ class ListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: Constants.Spacing.margin.value, left: Constants.Spacing.margin.value, bottom: Constants.Spacing.margin.value, right: Constants.Spacing.margin.value)
+        
+//        collectionView.addSubview(refreshControl)
     }
 }
 
@@ -147,6 +156,7 @@ extension ListViewController: ListUpdatedListener {
     
     func downloadDidFinish() {
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
             self.stopIndicatingActivity()
             self.collectionView.reloadData()
             self.viewModel.images(for: self.collectionView.indexPathsForVisibleItems)

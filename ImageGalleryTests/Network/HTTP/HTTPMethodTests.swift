@@ -1,12 +1,12 @@
 //
 //  HTTPMethodTests.swift
-//  ImageGallery
+//  ImageGalleryTests
 //
 //  Created by Salome Tsiramua on 3/11/21.
 //
 
 import XCTest
-@testable import Pokemon
+@testable import ImageGallery
 
 class HTTPMethodTests: XCTestCase {
 

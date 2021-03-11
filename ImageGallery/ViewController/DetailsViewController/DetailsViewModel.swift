@@ -22,6 +22,10 @@ class DetailsViewModelService: DetailsViewModel {
     
     func fetchDetails(completion: @escaping (Result<UIImage?, Error>) -> Void) {
         
+        guard Reachability.isConnectedToNetwork else {
+            return completion(.failure(NetworkError.noInternetConnection))
+        }
+        
         utilityQueue.async { [weak self] in
             guard let self = self else {
                 completion(.failure(NetworkError.generalError))
