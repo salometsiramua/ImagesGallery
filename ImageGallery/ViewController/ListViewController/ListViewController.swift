@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startIndicatingActivity()
         setupCollectionView()
         viewModel.listUpdatedListener = self
         viewModel.fetchList()
@@ -28,7 +29,6 @@ class ListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: Constants.Spacing.margin.value, left: Constants.Spacing.margin.value, bottom: Constants.Spacing.margin.value, right: Constants.Spacing.margin.value)
     }
-
 }
 
 extension ListViewController: UICollectionViewDelegate {
@@ -147,9 +147,9 @@ extension ListViewController: ListUpdatedListener {
     
     func downloadDidFinish() {
         DispatchQueue.main.async {
+            self.stopIndicatingActivity()
             self.collectionView.reloadData()
             self.viewModel.images(for: self.collectionView.indexPathsForVisibleItems)
         }
     }
-    
 }

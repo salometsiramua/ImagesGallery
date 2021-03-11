@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol ListViewModel {
     var imageGallery: [Int: [ImageCollectionViewCellViewModel]] { get }

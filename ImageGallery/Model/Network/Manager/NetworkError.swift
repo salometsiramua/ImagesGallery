@@ -8,11 +8,10 @@
 import Foundation
 
 enum NetworkError: Error, Equatable {
-    case responseIsNil
     case responseDataIsNil
-    case invalidStatusCode
-    case responseParsingToJsonDictionary
     case urlIsInvalid
+    case generalError
     case noInternetConnection
+    case couldNotLoadImage
 }
 

@@ -29,6 +29,9 @@
                             <constraint firstItem="CIa-XM-3cH" firstAttribute="trailing" secondItem="PnL-I0-hOL" secondAttribute="trailing" id="dO7-l1-TTg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="detailedImageView" destination="PnL-I0-hOL" id="sss-n6-1RS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABp-Ui-Ctt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
