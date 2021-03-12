@@ -26,21 +26,22 @@ class DetailsViewModelService: DetailsViewModel {
             return completion(.failure(NetworkError.noInternetConnection))
         }
         
-        utilityQueue.async { [weak self] in
-            guard let self = self else {
-                completion(.failure(NetworkError.generalError))
-                return
-            }
-            guard let url = URL(string: self.url), let data = try? Data(contentsOf: url) else {
+        let downloader = ImageDownloader(Image(url: url), indexPath: nil)
+        
+        downloader.completionBlock = {
+            if downloader.isCancelled {
                 completion(.failure(NetworkError.couldNotLoadImage))
                 return
             }
-            let image = UIImage(data: data)
             
             DispatchQueue.main.async {
-                completion(.success(image))
+                guard downloader.image.state == .downloaded else {
+                    completion(.failure(NetworkError.couldNotLoadImage))
+                    return
+                }
+                completion(.success(downloader.image.image))
             }
         }
-        
+        downloader.start()
     }
 }

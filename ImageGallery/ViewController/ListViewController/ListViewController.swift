@@ -74,7 +74,7 @@ extension ListViewController: UICollectionViewDataSource {
         }
         
         cell.configure(with: values[indexPath.row])
-        viewModel.images(for: collectionView.indexPathsForVisibleItems)
+        viewModel.loadImages(for: collectionView.indexPathsForVisibleItems)
         
         return cell
     }
@@ -85,13 +85,13 @@ extension ListViewController: UICollectionViewDataSource {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            viewModel.images(for: collectionView.indexPathsForVisibleItems)
+            viewModel.loadImages(for: collectionView.indexPathsForVisibleItems)
             viewModel.resumeAllOperations()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        viewModel.images(for: collectionView.indexPathsForVisibleItems)
+        viewModel.loadImages(for: collectionView.indexPathsForVisibleItems)
         viewModel.resumeAllOperations()
     }
     
@@ -169,7 +169,7 @@ extension ListViewController: ListUpdatedListener {
             self.refreshControl.endRefreshing()
             self.stopIndicatingActivity()
             self.collectionView.reloadData()
-            self.viewModel.images(for: self.collectionView.indexPathsForVisibleItems)
+            self.viewModel.loadImages(for: self.collectionView.indexPathsForVisibleItems)
         }
     }
 }

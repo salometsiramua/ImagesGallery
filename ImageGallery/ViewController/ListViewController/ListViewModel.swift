@@ -12,12 +12,12 @@ protocol ListViewModel {
     func fetchList()
     func suspendAllOperations()
     func resumeAllOperations()
-    func images(for cells: [IndexPath]?)
+    func loadImages(for cells: [IndexPath]?)
     func key(for index: Int) -> Int?
     func resetAll()
 }
 
-protocol ListUpdatedListener {
+protocol ListUpdatedListener: class {
     func reloadCollectionView(rows: [IndexPath])
     func showAlert(with error: Error)
     func downloadDidFinish()
@@ -25,7 +25,7 @@ protocol ListUpdatedListener {
 
 class ListViewModelService: ListViewModel {
     
-    private let listUpdatedListener: ListUpdatedListener
+    private weak var listUpdatedListener: ListUpdatedListener?
     
     private let imagesListFetcher: ImagesListFetcher
     
@@ -43,9 +43,9 @@ class ListViewModelService: ListViewModel {
             switch result {
             case .success(let response):
                 self?.map(response: response)
-                self?.listUpdatedListener.downloadDidFinish()
+                self?.listUpdatedListener?.downloadDidFinish()
             case .failure(let error):
-                self?.listUpdatedListener.showAlert(with: error)
+                self?.listUpdatedListener?.showAlert(with: error)
             }
         }
     }
@@ -70,7 +70,7 @@ class ListViewModelService: ListViewModel {
         }
     }
     
-    func images(for cells: [IndexPath]?) {
+    func loadImages(for cells: [IndexPath]?) {
         
         guard let cells = cells else { return }
         
@@ -134,8 +134,11 @@ class ListViewModelService: ListViewModel {
                 }
                 values[indexPath.row].image = downloader.image
                 
-                self?.pendingOperations.downloadsInProgress.removeValue(forKey: downloader.indexPath)
-                self?.listUpdatedListener.reloadCollectionView(rows: [downloader.indexPath])
+                guard let indexPath = downloader.indexPath else {
+                    return
+                }
+                self?.pendingOperations.downloadsInProgress.removeValue(forKey: indexPath)
+                self?.listUpdatedListener?.reloadCollectionView(rows: [indexPath])
             }
         }
         

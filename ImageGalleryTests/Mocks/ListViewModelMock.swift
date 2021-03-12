@@ -15,9 +15,9 @@ class ListViewModelMock: ListViewModel {
     var operationsRunning = false
     
     func fetchList() {
-        imageGallery = [2:[ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, id: 1, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, id: 2, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, id: 3, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, id: 4, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com"))],
-                                                                        3: [ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, id: 5, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, id: 6, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, id: 7, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com"))],
-                                                                        4: [ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, id: 8, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, id: 9, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, id: 10, title: "ds", url: "url.com", thumbnailUrl: "urlsd.com"))]]
+        imageGallery = [2:[ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 2, url: "url.com", thumbnailUrl: "urlsd.com"))],
+                                                                        3: [ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 3, url: "url.com", thumbnailUrl: "urlsd.com"))],
+                                                                        4: [ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, url: "url.com", thumbnailUrl: "urlsd.com")), ImageCollectionViewCellViewModel(imageContent: ImageContent(albumId: 4, url: "url.com", thumbnailUrl: "urlsd.com"))]]
     }
     
     func suspendAllOperations() {
@@ -28,7 +28,7 @@ class ListViewModelMock: ListViewModel {
         operationsRunning = true
     }
     
-    func images(for cells: [IndexPath]?) {
+    func loadImages(for cells: [IndexPath]?) {
         
     }
     

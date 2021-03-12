@@ -37,9 +37,9 @@ class Image {
 class ImageDownloader: Operation {
     
     let image: Image
-    let indexPath: IndexPath
+    let indexPath: IndexPath?
     
-    init(_ image: Image, indexPath: IndexPath) {
+    init(_ image: Image, indexPath: IndexPath?) {
         self.image = image
         self.indexPath = indexPath
     }
