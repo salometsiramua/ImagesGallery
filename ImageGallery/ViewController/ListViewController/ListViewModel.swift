@@ -9,12 +9,12 @@ import Foundation
 
 protocol ListViewModel {
     var imageGallery: [Int: [ImageCollectionViewCellViewModel]] { get }
-    var listUpdatedListener: ListUpdatedListener? { get set }
     func fetchList()
     func suspendAllOperations()
     func resumeAllOperations()
     func images(for cells: [IndexPath]?)
     func key(for index: Int) -> Int
+    func resetAll()
 }
 
 protocol ListUpdatedListener {
@@ -25,7 +25,7 @@ protocol ListUpdatedListener {
 
 class ListViewModelService: ListViewModel {
     
-    var listUpdatedListener: ListUpdatedListener?
+    private let listUpdatedListener: ListUpdatedListener
     
     private let imagesListFetcher: ImagesListFetcher
     
@@ -33,8 +33,9 @@ class ListViewModelService: ListViewModel {
     
     private let pendingOperations = PendingOperations()
     
-    init(imagesListFetcher: ImagesListFetcher = ImagesListFetcherService()) {
+    init(imagesListFetcher: ImagesListFetcher = ImagesListFetcherService(), listUpdatedListener: ListUpdatedListener) {
         self.imagesListFetcher = imagesListFetcher
+        self.listUpdatedListener = listUpdatedListener
     }
     
     func fetchList() {
@@ -42,14 +43,23 @@ class ListViewModelService: ListViewModel {
             switch result {
             case .success(let response):
                 self?.map(response: response)
-                self?.listUpdatedListener?.downloadDidFinish()
+                self?.listUpdatedListener.downloadDidFinish()
             case .failure(let error):
-                self?.listUpdatedListener?.showAlert(with: error)
+                self?.listUpdatedListener.showAlert(with: error)
             }
         }
     }
     
-    func map(response: ImageContentListResponse) {
+    func resetAll() {
+        suspendAllOperations()
+        pendingOperations.downloadsInProgress.forEach { (_, operation) in
+            operation.cancel()
+        }
+        pendingOperations.downloadsInProgress.removeAll()
+        imageGallery.removeAll()
+    }
+    
+    private func map(response: ImageContentListResponse) {
         response.imageContentList.forEach { (imageContent) in
             let model = ImageCollectionViewCellViewModel(imageContent: imageContent)
             if imageGallery[imageContent.albumId] == nil {
@@ -125,9 +135,8 @@ class ListViewModelService: ListViewModel {
                 values[indexPath.row].image = downloader.image
                 
                 self?.pendingOperations.downloadsInProgress.removeValue(forKey: downloader.indexPath)
-                self?.listUpdatedListener?.reloadCollectionView(rows: [downloader.indexPath])
+                self?.listUpdatedListener.reloadCollectionView(rows: [downloader.indexPath])
             }
-            
         }
         
         pendingOperations.downloadsInProgress[indexPath] = downloader

@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailsViewController: UIViewController {
 
-    @IBOutlet private weak var detailedImageView: UIImageView!
+    @IBOutlet private(set) weak var detailedImageView: UIImageView!
     
     var viewModel: DetailsViewModel?
     

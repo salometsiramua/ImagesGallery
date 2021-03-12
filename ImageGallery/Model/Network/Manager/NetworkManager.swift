@@ -71,7 +71,6 @@ extension ServiceManager {
             } catch {
                 self.onFailureCallback?(error)
             }
-            
         }
     }
 }

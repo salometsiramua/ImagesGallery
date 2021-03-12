@@ -47,6 +47,16 @@
 		B3D97FA525FA44F900D56965 /* NetworkSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97F9A25FA44F900D56965 /* NetworkSessionMock.swift */; };
 		B3D97FA925FA44F900D56965 /* MockEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97F9E25FA44F900D56965 /* MockEndpoint.swift */; };
 		B3D97FAB25FA44F900D56965 /* DataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FA025FA44F900D56965 /* DataTaskMock.swift */; };
+		B3D97FDE25FB276F00D56965 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FDD25FB276F00D56965 /* TestConstants.swift */; };
+		B3D97FE625FB358800D56965 /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FE525FB358800D56965 /* ListViewControllerTests.swift */; };
+		B3D97FEB25FB363E00D56965 /* ListViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FEA25FB363E00D56965 /* ListViewModelMock.swift */; };
+		B3D97FF025FB3D9000D56965 /* DetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FEF25FB3D9000D56965 /* DetailsViewControllerTests.swift */; };
+		B3D97FF525FB3DAF00D56965 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FF425FB3DAF00D56965 /* ListViewModelTests.swift */; };
+		B3D97FFA25FB3DBC00D56965 /* DetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FF925FB3DBC00D56965 /* DetailsViewModelTests.swift */; };
+		B3D97FFF25FB424D00D56965 /* ListFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D97FFE25FB424D00D56965 /* ListFetcherTests.swift */; };
+		B3D9800425FB626200D56965 /* ListFetcherServiceSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9800325FB626200D56965 /* ListFetcherServiceSessionMock.swift */; };
+		B3D9800925FB66F400D56965 /* ImagesListFetcherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9800825FB66F400D56965 /* ImagesListFetcherMock.swift */; };
+		B3D9800E25FB75D700D56965 /* DetailsViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9800D25FB75D700D56965 /* DetailsViewModelMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +123,16 @@
 		B3D97F9A25FA44F900D56965 /* NetworkSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSessionMock.swift; sourceTree = "<group>"; };
 		B3D97F9E25FA44F900D56965 /* MockEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEndpoint.swift; sourceTree = "<group>"; };
 		B3D97FA025FA44F900D56965 /* DataTaskMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskMock.swift; sourceTree = "<group>"; };
+		B3D97FDD25FB276F00D56965 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		B3D97FE525FB358800D56965 /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
+		B3D97FEA25FB363E00D56965 /* ListViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelMock.swift; sourceTree = "<group>"; };
+		B3D97FEF25FB3D9000D56965 /* DetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerTests.swift; sourceTree = "<group>"; };
+		B3D97FF425FB3DAF00D56965 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
+		B3D97FF925FB3DBC00D56965 /* DetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTests.swift; sourceTree = "<group>"; };
+		B3D97FFE25FB424D00D56965 /* ListFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFetcherTests.swift; sourceTree = "<group>"; };
+		B3D9800325FB626200D56965 /* ListFetcherServiceSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFetcherServiceSessionMock.swift; sourceTree = "<group>"; };
+		B3D9800825FB66F400D56965 /* ImagesListFetcherMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListFetcherMock.swift; sourceTree = "<group>"; };
+		B3D9800D25FB75D700D56965 /* DetailsViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +200,7 @@
 		B36A42C925F9E18F00CC1A26 /* ImageGalleryTests */ = {
 			isa = PBXGroup;
 			children = (
+				B3D97FDC25FB275E00D56965 /* Constants */,
 				B3D97F9525FA44F900D56965 /* Mocks */,
 				B3D97F7225FA43B200D56965 /* UIViewControllers */,
 				B3D97F7125FA43AD00D56965 /* Network */,
@@ -313,6 +334,7 @@
 				B3D97F7E25FA448E00D56965 /* ServiceTests.swift */,
 				B3D97F8025FA448E00D56965 /* HTTP */,
 				B3D97F8525FA448E00D56965 /* ServiceManagerTests.swift */,
+				B3D97FFE25FB424D00D56965 /* ListFetcherTests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -320,6 +342,10 @@
 		B3D97F7225FA43B200D56965 /* UIViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B3D97FE525FB358800D56965 /* ListViewControllerTests.swift */,
+				B3D97FEF25FB3D9000D56965 /* DetailsViewControllerTests.swift */,
+				B3D97FF425FB3DAF00D56965 /* ListViewModelTests.swift */,
+				B3D97FF925FB3DBC00D56965 /* DetailsViewModelTests.swift */,
 			);
 			path = UIViewControllers;
 			sourceTree = "<group>";
@@ -340,8 +366,20 @@
 				B3D97F9A25FA44F900D56965 /* NetworkSessionMock.swift */,
 				B3D97F9E25FA44F900D56965 /* MockEndpoint.swift */,
 				B3D97FA025FA44F900D56965 /* DataTaskMock.swift */,
+				B3D97FEA25FB363E00D56965 /* ListViewModelMock.swift */,
+				B3D9800325FB626200D56965 /* ListFetcherServiceSessionMock.swift */,
+				B3D9800825FB66F400D56965 /* ImagesListFetcherMock.swift */,
+				B3D9800D25FB75D700D56965 /* DetailsViewModelMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		B3D97FDC25FB275E00D56965 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B3D97FDD25FB276F00D56965 /* TestConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,13 +551,23 @@
 			files = (
 				B3D97FAB25FA44F900D56965 /* DataTaskMock.swift in Sources */,
 				B3D97F8B25FA448E00D56965 /* HTTPSessionTests.swift in Sources */,
+				B3D97FDE25FB276F00D56965 /* TestConstants.swift in Sources */,
+				B3D9800925FB66F400D56965 /* ImagesListFetcherMock.swift in Sources */,
 				B3D97F7425FA440700D56965 /* UIViewExtensionTests.swift in Sources */,
 				B36A42CB25F9E18F00CC1A26 /* ImageGalleryTests.swift in Sources */,
 				B3D97F8A25FA448E00D56965 /* HTTPMethodTests.swift in Sources */,
+				B3D97FE625FB358800D56965 /* ListViewControllerTests.swift in Sources */,
 				B3D97F8E25FA448E00D56965 /* ServiceManagerTests.swift in Sources */,
+				B3D97FF525FB3DAF00D56965 /* ListViewModelTests.swift in Sources */,
+				B3D97FF025FB3D9000D56965 /* DetailsViewControllerTests.swift in Sources */,
+				B3D9800425FB626200D56965 /* ListFetcherServiceSessionMock.swift in Sources */,
+				B3D97FFF25FB424D00D56965 /* ListFetcherTests.swift in Sources */,
 				B3D97FA525FA44F900D56965 /* NetworkSessionMock.swift in Sources */,
+				B3D97FFA25FB3DBC00D56965 /* DetailsViewModelTests.swift in Sources */,
 				B3D97FA225FA44F900D56965 /* HTTPRequestMock.swift in Sources */,
 				B3D97FA925FA44F900D56965 /* MockEndpoint.swift in Sources */,
+				B3D9800E25FB75D700D56965 /* DetailsViewModelMock.swift in Sources */,
+				B3D97FEB25FB363E00D56965 /* ListViewModelMock.swift in Sources */,
 				B3D97F8825FA448E00D56965 /* ServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

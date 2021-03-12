@@ -8,24 +8,19 @@
 import UIKit
 class ListViewController: UIViewController {
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private(set) weak var collectionView: UICollectionView!
     private let refreshControl = UIRefreshControl()
     
-    lazy var viewModel: ListViewModel = ListViewModelService()
+    lazy var viewModel: ListViewModel = ListViewModelService(listUpdatedListener: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startIndicatingActivity()
         setupCollectionView()
-        viewModel.listUpdatedListener = self
         viewModel.fetchList()
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-    }
-    
-    @objc private func refreshData(_ sender: Any) {
-        //viewModel.fetchList()
     }
     
     private func setupCollectionView() {
@@ -36,14 +31,25 @@ class ListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: Constants.Spacing.margin.value, left: Constants.Spacing.margin.value, bottom: Constants.Spacing.margin.value, right: Constants.Spacing.margin.value)
         
-//        collectionView.addSubview(refreshControl)
+        collectionView.addSubview(refreshControl)
+        refreshControl.translatesAutoresizingMaskIntoConstraints = false
+        refreshControl.pin(to: view, directions: [.centerX])
     }
 }
 
-extension ListViewController: UICollectionViewDelegate {
-    
+//MARK: - Refresh control
+extension ListViewController {
+    @objc private func refreshData(_ sender: Any) {
+        viewModel.resetAll()
+        viewModel.fetchList()
+        collectionView.reloadData()
+    }
 }
 
+//MARK: - UICollectionViewDelegate
+extension ListViewController: UICollectionViewDelegate { }
+
+//MARK: - UICollectionViewDataSource
 extension ListViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -93,6 +99,7 @@ extension ListViewController: UICollectionViewDataSource {
 
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: Constants.Size.cell.value, height: Constants.Size.cell.value)
