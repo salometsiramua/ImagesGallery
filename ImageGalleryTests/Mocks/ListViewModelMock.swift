@@ -32,7 +32,7 @@ class ListViewModelMock: ListViewModel {
         
     }
     
-    func key(for index: Int) -> Int {
+    func key(for index: Int) -> Int? {
         return 0
     }
     

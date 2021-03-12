@@ -13,7 +13,7 @@ protocol ListViewModel {
     func suspendAllOperations()
     func resumeAllOperations()
     func images(for cells: [IndexPath]?)
-    func key(for index: Int) -> Int
+    func key(for index: Int) -> Int?
     func resetAll()
 }
 
@@ -92,13 +92,13 @@ class ListViewModelService: ListViewModel {
         
         toBeStarted.filter {
             
-            guard let values = imageGallery[key(for: $0.section)] else {
+            guard let key = key(for: $0.section), let values = imageGallery[key] else {
                 return false
             }
             
             return values[$0.row].image.state == ImageState.new }.forEach { (indexPath) in
                 
-                guard let values = imageGallery[key(for: indexPath.section)] else {
+                guard let key = key(for: indexPath.section), let values = imageGallery[key] else {
                     return
                 }
                 
@@ -117,7 +117,7 @@ class ListViewModelService: ListViewModel {
     
     private func startDownload(for photoRecord: Image, at indexPath: IndexPath) {
         
-        guard pendingOperations.downloadsInProgress[indexPath] == nil, let values = imageGallery[key(for: indexPath.section)], values[indexPath.row].image.state == ImageState.new else {
+        guard pendingOperations.downloadsInProgress[indexPath] == nil, let key = key(for: indexPath.section), let values = imageGallery[key], values[indexPath.row].image.state == ImageState.new else {
             return
         }
         
@@ -143,7 +143,10 @@ class ListViewModelService: ListViewModel {
         pendingOperations.downloadQueue.addOperation(downloader)
     }
     
-    func key(for index: Int) -> Int {
+    func key(for index: Int) -> Int? {
+        guard imageGallery.keys.count > index else {
+            return nil
+        }
         return Array(imageGallery.keys)[index]
     }
 }

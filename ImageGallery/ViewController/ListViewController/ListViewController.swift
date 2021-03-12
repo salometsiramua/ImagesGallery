@@ -57,7 +57,10 @@ extension ListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.imageGallery[viewModel.key(for: section)]?.count ?? 0
+        guard let key = viewModel.key(for: section) else {
+            return 0
+        }
+        return viewModel.imageGallery[key]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,7 +69,7 @@ extension ListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        guard let values = viewModel.imageGallery[viewModel.key(for: indexPath.section)] else {
+        guard let key = viewModel.key(for: indexPath.section), let values = viewModel.imageGallery[key] else {
             return UICollectionViewCell()
         }
         
@@ -114,7 +117,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let values = viewModel.imageGallery[viewModel.key(for: indexPath.section)] else {
+        guard let key = viewModel.key(for: indexPath.section), let values = viewModel.imageGallery[key] else {
             return
         }
         
